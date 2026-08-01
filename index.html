@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Magic Eraser</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="toolbar">
+
+  <div class="brand">
+    Magic Eraser
+  </div>
+
+  <label class="button file-button">
+    開く
+    <input
+      id="fileInput"
+      type="file"
+      accept="image/*"
+    >
+  </label>
+
+  <button
+    id="saveBtn"
+    disabled
+  >
+    保存
+  </button>
+
+  <button
+    id="clearBtn"
+    disabled
+  >
+    クリア
+  </button>
+
+  <span class="separator"></span>
+
+  <button
+    id="undoBtn"
+    disabled
+  >
+    ↶ Undo
+  </button>
+
+  <button
+    id="redoBtn"
+    disabled
+  >
+    ↷ Redo
+  </button>
+
+  <span class="separator"></span>
+
+  <label class="brush-control">
+
+    ブラシ
+
+    <input
+      id="brushSize"
+      type="range"
+      min="2"
+      max="300"
+      value="40"
+    >
+
+    <output id="brushSizeValue">
+      40 px
+    </output>
+
+  </label>
+
+  <button
+    id="eraseBtn"
+    disabled
+    class="primary"
+  >
+    消去
+  </button>
+
+  <button
+    id="clearMaskBtn"
+    disabled
+  >
+    選択解除
+  </button>
+
+</header>
+
+
+<main id="workspace">
+
+  <div id="dropHint">
+
+    <div class="drop-icon">
+      ＋
+    </div>
+
+    <strong>
+      画像をドラッグ＆ドロップ
+    </strong>
+
+    <span>
+      または「開く」から画像を選択
+    </span>
+
+    <small>
+      左ドラッグ：消去範囲を塗る　／　
+      右ドラッグ：範囲を消す
+    </small>
+
+  </div>
+
+
+  <div
+    id="canvasWrap"
+    hidden
+  >
+
+    <canvas id="imageCanvas"></canvas>
+
+    <canvas id="maskCanvas"></canvas>
+
+    <div id="brushCursor"></div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <span id="status">
+    画像を開いてください
+  </span>
+
+  <span id="runtimeStatus">
+    LaMa: 未ロード
+  </span>
+
+</footer>
+
+
+<!--
+  ONNX Runtime Web
+
+  WebGPU版を使用。
+  WebGPUが使用できない場合はJS側でWASMへフォールバックする。
+-->
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.webgpu.min.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

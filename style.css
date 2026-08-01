@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  background: #181a1d;
+
+  color: #e8eaed;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   Toolbar
+========================================================= */
+
+.toolbar {
+  min-height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 12px;
+
+  background: #24272b;
+
+  border-bottom: 1px solid #363a40;
+
+  user-select: none;
+}
+
+.brand {
+  font-weight: 700;
+
+  margin-right: 8px;
+
+  white-space: nowrap;
+}
+
+.separator {
+  width: 1px;
+
+  height: 28px;
+
+  background: #444950;
+
+  margin: 0 5px;
+}
+
+
+/* =========================================================
+   Buttons
+========================================================= */
+
+button,
+.button {
+  border: 1px solid #4a4f56;
+
+  background: #30343a;
+
+  color: #e8eaed;
+
+  border-radius: 6px;
+
+  padding: 7px 12px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+button:hover,
+.button:hover {
+  background: #3a3f46;
+}
+
+button:disabled {
+  opacity: 0.4;
+
+  cursor: default;
+}
+
+.primary {
+  background: #3c6fe8;
+
+  border-color: #4d7df0;
+}
+
+.primary:hover {
+  background: #4d7df0;
+}
+
+
+/* =========================================================
+   File button
+========================================================= */
+
+.file-button input {
+  display: none;
+}
+
+
+/* =========================================================
+   Brush
+========================================================= */
+
+.brush-control {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-left: auto;
+
+  white-space: nowrap;
+}
+
+.brush-control input {
+  width: 150px;
+}
+
+output {
+  min-width: 58px;
+
+  text-align: right;
+
+  color: #bfc5cd;
+}
+
+
+/* =========================================================
+   Workspace
+========================================================= */
+
+#workspace {
+  flex: 1;
+
+  position: relative;
+
+  overflow: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/*
+  ここが前回版の問題の修正。
+
+  #dropHint が display:flex を持っているため、
+  hidden 属性だけではCSSに負ける場合がある。
+
+  hidden時は明示的にdisplay:noneにする。
+*/
+
+#dropHint[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   Drop hint
+========================================================= */
+
+#dropHint {
+  border: 2px dashed #50565e;
+
+  border-radius: 14px;
+
+  width: min(600px, 80vw);
+
+  padding: 55px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #aeb4bc;
+}
+
+#dropHint strong {
+  color: #e5e8eb;
+
+  font-size: 19px;
+}
+
+#dropHint span {
+  font-size: 14px;
+}
+
+#dropHint small {
+  margin-top: 12px;
+
+  color: #858c95;
+}
+
+.drop-icon {
+  font-size: 42px;
+
+  line-height: 1;
+
+  color: #68717c;
+}
+
+
+/* =========================================================
+   Drag over
+========================================================= */
+
+.dragover #dropHint {
+  border-color: #6d8ff0;
+
+  background: #20283a;
+}
+
+
+/* =========================================================
+   Canvas
+========================================================= */
+
+#canvasWrap {
+  position: relative;
+
+  margin: auto;
+
+  box-shadow:
+    0 10px 40px #0008;
+}
+
+canvas {
+  display: block;
+}
+
+#imageCanvas {
+  position: relative;
+
+  z-index: 1;
+}
+
+#maskCanvas {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   Brush cursor
+========================================================= */
+
+#brushCursor {
+  position: absolute;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  border: 2px solid white;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 1px #000;
+
+  display: none;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   Footer
+========================================================= */
+
+footer {
+  height: 30px;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: #202327;
+
+  color: #9299a2;
+
+  font-size: 12px;
+
+  border-top: 1px solid #30343a;
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .brush-control {
+    margin-left: 0;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    display: none;
+  }
+
+}
