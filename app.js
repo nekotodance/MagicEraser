@@ -628,7 +628,7 @@ function openFile(file) {
 
 
     setStatus(
-      `${img.naturalWidth} × ${img.naturalHeight}` + currentFileName
+      `${img.naturalWidth} × ${img.naturalHeight} : ` + currentFileName
     );
 
 
