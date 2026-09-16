@@ -157,6 +157,7 @@ let undoStack = [];
 
 let redoStack = [];
 
+let currentFileName = "";
 
 /*
   ONNX Runtime session
@@ -407,7 +408,8 @@ function clearAll() {
   eraseMode = false;
 
   lastPoint = null;
-
+  
+  currentFileName = "";
 
   undoStack = [];
 
@@ -550,6 +552,7 @@ function openFile(file) {
     return;
 
   }
+  currentFileName = file.name;
 
 
   const url =
@@ -2286,7 +2289,7 @@ saveBtn.addEventListener(
 
 
     a.download =
-      "image_cleaned.png";
+      currentFileName || "image_cleaned.png";
 
 
     a.href =
