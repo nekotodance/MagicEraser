@@ -628,7 +628,7 @@ function openFile(file) {
 
 
     setStatus(
-      `${img.naturalWidth} × ${img.naturalHeight}`
+      `${img.naturalWidth} × ${img.naturalHeight}` + currentFileName
     );
 
 
@@ -2302,7 +2302,7 @@ saveBtn.addEventListener(
 
 
     setStatus(
-      "PNGとして保存しました"
+      currentFileName + "を保存しました"
     );
 
   }
